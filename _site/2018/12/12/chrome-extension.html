@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome 扩展 - Frank</title>
+    <meta name="author"  content="cqbyte">
+    <meta name="description" content="Chrome 扩展">
+    <meta name="keywords"  content="">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Chrome 扩展 - Frank">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2018/12/12/chrome-extension.html">
+    <meta property="og:description" content="Frank de 技术博客">
+    <meta property="og:site_name" content="Frank">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+<!--    <link rel="stylesheet" href="/assets/css/github-markdown.css">-->
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="false"> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-circuitBoard bgcolor-pink post-no-cover"
+    data-theme="pink"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+      </div>
+      <h1>Chrome 扩展</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>cqbyte</span>
+        <time class="post-meta-item" datetime="18-12-12"><i class="iconfont icon-date"></i>12 Dec 2018</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article id="content" class="main-content markdown-body" rol="main" >
+      <ul>
+  <li>
+    <p>名为 <code class="highlighter-rouge">manifest.json</code> 的 manifest 文件是必须的，浏览器从这个文件获取扩展程序的相关信息，如扩展的文件路径和请求的权限等。</p>
+  </li>
+  <li>
+    <p>扩展程序的文件支持 相对路径 和 绝对路径 访问：<code class="highlighter-rouge">chrome-extension://&lt;extensionID&gt;/&lt;pathToFile&gt;</code>。在代码中可以使用 <code class="highlighter-rouge">chrome.runtime.getURL()</code> 获取 extensionID。</p>
+  </li>
+</ul>
+
+<h3 id="一个扩展程序通常包括以下几个部分">一个扩展程序通常包括以下几个部分：</h3>
+<ul>
+  <li>Manifest</li>
+  <li>
+    <p>Background Script</p>
+
+    <p>背景页是扩展程序的事件处理器，通常在这里监听一些浏览器的事件。脚本加载后便进入休眠状态，直到监听的某个浏览器事件发生。在执行完相关逻辑后便会被卸载再次进入休眠状态。</p>
+  </li>
+  <li>UI Elements
+    <ul>
+      <li>
+        <p><a href="https://developer.chrome.com/extensions/browserAction">browser action</a></p>
+
+        <p>browser action 代表用户对扩展程序可以进行的一些操作，表现为工具栏上的图标以及提示信息、角标和弹出页面。</p>
+      </li>
+      <li>
+        <p><a href="https://developer.chrome.com/extensions/pageAction">page action</a></p>
+
+        <p>page action 代表的是用户可以对 <strong>当前页面</strong> 可以进行的一些操作。表现形式和 browser action 类似：
+图标、提示、弹出页面，不同的是 page action 不支持角标，但是可以使图标变灰。</p>
+
+        <p>ps:注意选择使用 browser action 还是 page action ，如果希望用户始终可以和扩展程序交互，请使用 browser action。</p>
+      </li>
+      <li>
+        <p><a href="https://developer.chrome.com/apps/contextMenus">context menus</a></p>
+
+        <p>向chrome的上下文菜单添加菜单项。</p>
+      </li>
+      <li>
+        <p><a href="https://developer.chrome.com/extensions/omnibox">omnibox</a></p>
+
+        <p>当用户在地址栏输入时与用户交互、提供建议选项等</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Content Script</p>
+
+    <p>脚本在当前页面的上下文中执行，可以访问页面 DOM 。</p>
+  </li>
+  <li>
+    <p>Options Pages</p>
+
+    <p>扩展程序配置页面，提供配置项供用户使用来自定义扩展。</p>
+  </li>
+</ul>
+
+<h3 id="apis">APIs</h3>
+<p>除了可以调用常规web页面的api，扩展程序还可以调用浏览器提供的 扩展专用接口 <a href="https://developer.chrome.com/extensions/api_index">extension-specific APIs</a>。</p>
+
+
+    </article>
+
+    
+    <div class="social-share-wrapper">
+      <div class="social-share"></div>
+    </div>
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="https://avatars0.githubusercontent.com/u/16101554?s=460&v=4" alt="">
+      </div>
+      <div class="author-name" rel="author">cqbyte</div>
+      <div class="bio">
+        <p>你的美丽影响我敲码了</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//github.com/cqbyte" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2018/12/12/jekyll.html" class="read-next-link"></a>
+        <section>
+          <span>jekyll 使用小记</span>
+          <p>post 与 page 布局分别用于什么场景从布局内容来分析，page 布局展示了标题和内容，而 post 布局还...</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2018/12/12/chrome-extension-note.html" class="read-next-link"></a>
+          <section>
+            <span>Chrome extension 开发小记</span>
+            <p>官方介绍：What are extensions?</p>
+          </section>
+          
+      </div>
+      
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>Frank ©
+  
+  
+    2018
+    -
+  
+  2019
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>
