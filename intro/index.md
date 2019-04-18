@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: 简历
 subtitle: 前端
 date: 2019-04-19
