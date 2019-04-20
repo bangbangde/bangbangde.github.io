@@ -13,22 +13,11 @@ body, html {
     height: 100%
 }
 
-audio, body, caption, div, footer, form, h1, h2, h3, h4, h5, h6, header, html, iframe, label, legend, li, main, mark, menu, nav, ol, p, section, span, summary, table, textarea, time, ul, video {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    outline: 0 none
-}
-
 body {
     font-family: -apple-system, Verdana, "PingFang SC", "Helvetica Neue", Arial, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
     color: #656565;
     -webkit-font-smoothing: antialiased;
     background-color: #f7f8fa
-}
-
-ul {
-    list-style-type: none
 }
 
 a {
@@ -1257,7 +1246,7 @@ a {
         padding: 16px 0;
         font-size: 16px;
         font-weight: 700;
-        color: #a5a8b0;
+        color: #a5a8b0!important;
         opacity: 1
     }
 

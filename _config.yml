@@ -2,7 +2,7 @@
 title: 'Frank'
 description: 'Frank de 技术博客'
 keyword: 'Frank, 前端, 前端开发, 前端博客, 技术博客, javascript, vue, nodejs'
-url: 'https://cqbyte.github.io' # your host
+url: 'https://bangbangde.github.io' # your host
 
 # if you don't need baseurl, you should leave this value blank.
 baseurl: ''
@@ -18,7 +18,7 @@ footer:
 
 # Author 配置博主信息
 author: 'Frank'
-nickname: 'cqbyte'
+nickname: 'bangbangde'
 bio: 'biu~biu~'
 avatar: 'https://avatars0.githubusercontent.com/u/16101554?s=460&v=4'
 
@@ -63,7 +63,7 @@ recommend-tags: true # whether or not display recommend-tags on the sidebar
 recommend-condition-size: 12 # a tag will be recommended if the size of it is more than this value
 
 # Build settings
-paginate: 6
+paginate: 10
 paginate_path: 'page:num'
 exclude: ['node_modules', 'dev', 'package.json', 'gulpfile.js', '.gitignore', 'README.md']
 
