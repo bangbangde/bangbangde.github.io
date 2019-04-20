@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Chrome 扩展
+title: Chrome extension 笔记
+tags: ['chrome']
 ---
 
 * 名为 `manifest.json` 的 manifest 文件是必须的，浏览器从这个文件获取扩展程序的相关信息，如扩展的文件路径和请求的权限等。

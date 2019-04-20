@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Chrome extension 开发小记
+title: 跟着教程学习 Chrome extension 开发
+tags: ['chrome']
 ---
 
 官方介绍：[What are extensions?](https://developer.chrome.com/extensions)
