@@ -164,7 +164,8 @@ a {
   ul, ol {
     list-style: unset;
     padding: unset;
-    padding-inline-start: 40px;
+    padding-inline-start: 2rem;
+    margin-bottom: 1em;
   }
   :first-child {
     margin-top: 0;

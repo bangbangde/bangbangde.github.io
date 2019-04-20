@@ -22,6 +22,7 @@ echarts 应用、腾讯地图应用、新需求研讨等工作。近期的输出
 * 登录页新UI，新增短信验证码、微信扫码登录方式
 * 使用 Echarts 实现中国地图省市区切换显示：[DEMO](https://bangbangde.github.io/playground/map/)
 
+
 **技术栈：** jquery / bootstrap / layui / echarts / map / ueditor / jsp
 
 ### H5商城（VUE全家桶）
@@ -31,7 +32,8 @@ echarts 应用、腾讯地图应用、新需求研讨等工作。近期的输出
 * 配置路由表，实现 `keepAlive` 、 页面标题的配置和底栏 `tab` 的自动切换
 * 使用 axios 拦截器实现了请求参数签名、序列化等功能，引入 `axios-mock-adapter` 实现本地数据模拟
 
-**技术栈：**：vue/ vuex / vue-router / vant / axios
+
+**技术栈：**vue/ vuex / vue-router / vant / axios
 
 ### 新零售·商城（微信小程序）
 负责项目排期规划、主导完成开发相关工作，设计实现了可后台编辑的商城首页。主要内容：
@@ -40,7 +42,8 @@ echarts 应用、腾讯地图应用、新需求研讨等工作。近期的输出
 * 根据 json 数据加载自定义组件并填入数据，实现自定义页面结构与数据分离。
 * 实现了 sku 组件，提供包含库存控制的商品多规格选择功能。
 
-**技术栈：**：微信小程序
+
+**技术栈：**微信小程序
 
 ### BlogPage（个人项目） 
 [https://github.com/bangbangde/chrome-github-blog](https://github.com/bangbangde/chrome-github-blog)
@@ -53,7 +56,8 @@ github 授权、浏览 github 仓库以及新建、下载文件，文章自动�
 * 框架选择了react，组件库使用 material-ui，应用了css in js、高阶组件等特性。
 * 使用promise、 async/await 语法提高异步代码可读性。
 
-**技术栈：**：react / material-ui / webpack / axios / github api / chrome extension
+
+**技术栈：**react / material-ui / webpack / axios / github api / chrome extension
 
 
 ## 工作经历
