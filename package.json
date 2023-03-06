@@ -2,10 +2,9 @@
   "name": "bangbangde.github.io",
   "version": "0.0.0",
   "scripts": {
-    "new": "node scripts/create-article.js",
-    "serve": "node scripts/serve.js",
-    "build": "node scripts/build.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "repository": {
     "type": "git",
@@ -19,15 +18,7 @@
   },
   "homepage": "https://github.com/bangbangde/bangbangde.github.io#readme",
   "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.0",
-    "@babel/preset-env": "^7.20.2",
-    "marked": "^4.2.12"
-  },
-  "dependencies": {
-    "js-yaml": "^4.1.0",
-    "pug": "^3.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "vitepress": "^1.0.0-alpha.49",
+    "vue": "^3.2.47"
   }
 }
