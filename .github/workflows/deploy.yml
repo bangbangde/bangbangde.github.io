@@ -19,6 +19,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
       - name: check if docs changed
         if: ${{ github.event_name != 'workflow_dispatch' }}
         run: |
@@ -29,9 +32,6 @@ jobs:
             echo "nothing changed"
             exit 1
           fi
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           node-version: 16
