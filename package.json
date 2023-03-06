@@ -1,0 +1,33 @@
+{
+  "name": "bangbangde.github.io",
+  "version": "0.0.0",
+  "scripts": {
+    "new": "node scripts/create-article.js",
+    "serve": "node scripts/serve.js",
+    "build": "node scripts/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bangbangde/bangbangde.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bangbangde/bangbangde.github.io/issues"
+  },
+  "homepage": "https://github.com/bangbangde/bangbangde.github.io#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "marked": "^4.2.12"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "pug": "^3.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
