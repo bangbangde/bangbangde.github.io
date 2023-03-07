@@ -2,9 +2,9 @@
   "name": "bangbangde.github.io",
   "version": "0.0.0",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
   },
   "repository": {
     "type": "git",
