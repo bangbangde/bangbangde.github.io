@@ -12,15 +12,15 @@ export default {
     // 顶部右侧横向导航菜单
     nav: [
       {
-        text: 'Guide',
+        text: 'Notes',
         items: [
-          { text: 'HTML', link: '/guide/html/' },
-          { text: 'CSS', link: '/guide/css/' },
-          { text: 'JavaScript', link: '/guide/javascript/' },
-          { text: 'TypeScript', link: '/guide/typescript/' },
-          { text: 'Vue', link: '/guide/vue/' },
-          { text: 'React', link: '/guide/react/' },
-          { text: 'Others', link: '/guide/others/' }
+          { text: 'HTML', link: '/notes/html/' },
+          { text: 'CSS', link: '/notes/css/' },
+          { text: 'JavaScript', link: '/notes/javascript/' },
+          { text: 'TypeScript', link: '/notes/typescript/' },
+          { text: 'Vue', link: '/notes/vue/' },
+          { text: 'React', link: '/notes/react/' },
+          { text: 'Others', link: '/notes/others/' }
         ]
       },
       { text: 'Cheatsheets', link: '/cheatsheets/' },

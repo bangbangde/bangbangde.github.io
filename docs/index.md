@@ -5,8 +5,8 @@ hero:
   name: CodeBuff
   text: Coding assistant for Front-end Developer
   tagline: |
-   Workbench🚀, Cheatsheets, Guides & Articles.
-   Reduce your brain burden.
+   Workbench🚀, Cheatsheets, Notes.
+   Reduce brain burden.
   image:
     src: /brain.png
     alt: CodeBuff
@@ -15,9 +15,9 @@ hero:
       text: Workbench
       link: /workbench
     - theme: alt
-      text: Guide
-      link: /guide/
+      text: Notes
+      link: /notes/
     - theme: alt
       text: Install
-      link: /guide/install
+      link: /install
 ---
