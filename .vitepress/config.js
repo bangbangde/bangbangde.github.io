@@ -12,54 +12,30 @@ export default {
     // 顶部右侧横向导航菜单
     nav: [
       {
-        text: 'Guides',
+        text: 'Guide',
         items: [
-          { 
-            text: 'Basic',
-            items: [
-              { text: 'JavaScript', link: '/javascript/' },
-              { text: 'Css', link: '/css/' },
-              { text: 'Html', link: '/css/' }
-            ]
-          },
-          { 
-            text: 'Frameworks',
-            items: [
-              { text: 'Vue', link: '/vue/' },
-              { text: 'React', link: '/react/' }
-            ]
-          }
+          { text: 'HTML', link: '/guide/html/' },
+          { text: 'CSS', link: '/guide/css/' },
+          { text: 'JavaScript', link: '/guide/javascript/' },
+          { text: 'TypeScript', link: '/guide/typescript/' },
+          { text: 'Vue', link: '/guide/vue/' },
+          { text: 'React', link: '/guide/react/' },
+          { text: 'Others', link: '/guide/others/' }
         ]
       },
-      { text: 'Cheatsheets', link: '/cheatsheets' },
+      { text: 'Cheatsheets', link: '/cheatsheets/' },
       { text: 'Playgrounds', link: '/playgrounds' },
       { text: 'About', link: '/about' },
     ],
-    /**
-     * 
-        {
-          text: 'VitePress',
-          collapsed: true,
-          items: [
-            { text: 'demo', link: '/vitepress/demo' },
-            { text: 'emoji', link: '/vitepress/emoji' },
-          ]
-        },
-        {
-          text: 'Section Title B',
-          collapsed: true,
-          items: [
-            { text: 'Item C', link: '/item-c' },
-            { text: 'Item D', link: '/item-d' },
-          ]
-        }
-     */
     sidebar: {
-      "/javascript/": [],
-      "/css/": [],
       "/html/": [],
-      "/web/": [],
-      "/other/": []
+      "/css/": [],
+      "/javascript/": [],
+      "/typescript/": [],
+      "/vitepress/": [],
+      "/vue/": [],
+      "/react/": [],
+      "/others/": []
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/bangbangde/bangbangde.github.io' },
