@@ -14,8 +14,8 @@ hero:
       link: /workbench
     - theme: alt
       text: Get Started
-      link: /guide/what-is-vitepress
+      link: /guide/get-started
     - theme: alt
       text: Install
-      link: /guide/what-is-vitepress
+      link: /guide/install
 ---

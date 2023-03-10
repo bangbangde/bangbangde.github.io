@@ -11,22 +11,28 @@ export default {
   themeConfig: {
     // 顶部右侧横向导航菜单
     nav: [
-      { text: 'Cheatsheets', link: '/cheatsheets' },
-      { text: 'Playgrounds', link: '/playgrounds' },
       {
         text: 'Guides',
         items: [
-          { text: 'Item A', link: '/item-1' },
-          { text: 'Item B', link: '/item-2' },
           { 
-            text: '233',
+            text: 'Basic',
             items: [
-              { text: 'Section A Item A', link: '...' },
-              { text: 'Section B Item B', link: '...' }
+              { text: 'JavaScript', link: '/javascript/' },
+              { text: 'Css', link: '/css/' },
+              { text: 'Html', link: '/css/' }
+            ]
+          },
+          { 
+            text: 'Frameworks',
+            items: [
+              { text: 'Vue', link: '/vue/' },
+              { text: 'React', link: '/react/' }
             ]
           }
         ]
       },
+      { text: 'Cheatsheets', link: '/cheatsheets' },
+      { text: 'Playgrounds', link: '/playgrounds' },
       { text: 'About', link: '/about' },
     ],
     sidebar: {

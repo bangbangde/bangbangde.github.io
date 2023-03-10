@@ -26,7 +26,7 @@ jobs:
         if: ${{ github.event_name != 'workflow_dispatch' }}
         run: |
           docs_changed=`git diff --name-only HEAD^ HEAD -- docs`
-          if [ -n "$api_changed" ]; then
+          if [ -n "$docs_changed" ]; then
             exit 0
           else
             echo "nothing changed"
