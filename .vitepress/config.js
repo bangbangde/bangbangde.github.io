@@ -59,7 +59,7 @@ export default {
       { icon: 'github', link: 'https://github.com/bangbangde/bangbangde.github.io' },
     ],
     footer: {
-      // message: 'Released under the MIT License.',
+      message: 'Powered by VitePress.',
       copyright: 'Copyright © 2019-present Frank Z'
     }
   }

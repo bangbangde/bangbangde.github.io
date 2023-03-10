@@ -4,7 +4,9 @@ layout: home
 hero:
   name: CodeBuff
   text: My Coding Assistant
-  tagline: Guides & Articles, Cheatsheets, Playgrounds.
+  tagline: |
+   Workbench🚀, Cheatsheets, Guides & Articles.
+   Reduce your brain burden.
   image:
     src: /brain.png
     alt: CodeBuff
