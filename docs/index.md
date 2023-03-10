@@ -1,13 +1,13 @@
 ---
-title: Bangbangde
+title: home
 layout: home
 hero:
-  name: Bangbangde
+  name: CodeBuff
   text: My Coding Assistant
   tagline: Guides & Articles, Cheatsheets, Playgrounds.
   image:
     src: /brain.png
-    alt: VitePress
+    alt: CodeBuff
   actions:
     - theme: brand
       text: Workbench

@@ -1,6 +1,6 @@
 export default {
   srcDir: 'docs',
-  title: 'Bangbangde',
+  title: 'CodeBuff',
   description: 'My Coding Assistant',
   head: [
     [

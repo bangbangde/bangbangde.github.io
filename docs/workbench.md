@@ -2,4 +2,8 @@
 title: workbench
 layout: home
 ---
-# TODO: workbench
+<script setup>
+  import Workbench from "../views/Workbench.vue"
+</script>
+
+<Workbench />
