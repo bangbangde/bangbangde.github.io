@@ -35,8 +35,8 @@ export default {
       { text: 'Playgrounds', link: '/playgrounds' },
       { text: 'About', link: '/about' },
     ],
-    sidebar: {
-      "/vitepress/": [
+    /**
+     * 
         {
           text: 'VitePress',
           collapsed: true,
@@ -53,7 +53,13 @@ export default {
             { text: 'Item D', link: '/item-d' },
           ]
         }
-      ]
+     */
+    sidebar: {
+      "/javascript/": [],
+      "/css/": [],
+      "/html/": [],
+      "/web/": [],
+      "/other/": []
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/bangbangde/bangbangde.github.io' },

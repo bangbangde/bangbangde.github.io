@@ -15,8 +15,8 @@ hero:
       text: Workbench
       link: /workbench
     - theme: alt
-      text: Get Started
-      link: /guide/get-started
+      text: Guide
+      link: /guide/
     - theme: alt
       text: Install
       link: /guide/install
