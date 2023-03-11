@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/bangbangde/bangbangde.github.io#readme",
   "devDependencies": {
+    "fast-glob": "^3.2.12",
+    "gray-matter": "^4.0.3",
+    "sitemap": "^7.1.1",
     "vitepress": "^1.0.0-alpha.49",
     "vue": "^3.2.47"
   }

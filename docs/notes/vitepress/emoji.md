@@ -1,3 +1,7 @@
+---
+title: vitepress 支持的 emoji
+description: vitepress 支持的 emoji
+---
 > https://github.com/markdown-it/markdown-it-emoji/blob/master/lib/data/full.json
 
 <div v-if="emojiSet" class="emoji-set">
