@@ -28,6 +28,6 @@ export default {
           lastUpdated
         }
       })
-    );
+    ).then(files => files.filter(({data}) => data.layout === undefined || data.layout === 'docs'));
   }
 }

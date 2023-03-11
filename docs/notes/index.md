@@ -1,10 +1,16 @@
 ---
-titile: 笔记
+title: 笔记
+description: ''
+tags: []
+categories: []
+created: '2023-3-12 1:48:29'
+updated: '2023-3-12 1:48:29'
 layout: page
 ---
 <script setup>
   import { data } from "./notes.data.js";
-  import Archice from "../../views/Archive.vue";
+  import Archive from "../../views/Archive.vue";
 </script>
 
-<Archice :source="data" />
+<Archive :source="data" />
+

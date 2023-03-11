@@ -30,13 +30,19 @@ export default {
       {
         text: 'Notes',
         items: [
-          { text: 'HTML', link: '/notes/html/' },
-          { text: 'CSS', link: '/notes/css/' },
-          { text: 'JavaScript', link: '/notes/javascript/' },
-          { text: 'TypeScript', link: '/notes/typescript/' },
-          { text: 'Vue', link: '/notes/vue/' },
-          { text: 'React', link: '/notes/react/' },
-          { text: 'Others', link: '/notes/others/' }
+          { text: 'Archive', link: '/notes/' },
+          {
+            // text: 'Categories',
+            items: [
+              { text: 'HTML', link: '/notes/html/' },
+              { text: 'CSS', link: '/notes/css/' },
+              { text: 'JavaScript', link: '/notes/javascript/' },
+              { text: 'TypeScript', link: '/notes/typescript/' },
+              { text: 'Vue', link: '/notes/vue/' },
+              { text: 'React', link: '/notes/react/' },
+              { text: 'Others', link: '/notes/others/' }
+            ]
+          }
         ]
       },
       { text: 'Cheatsheets', link: '/cheatsheets/' },

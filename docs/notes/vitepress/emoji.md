@@ -1,6 +1,10 @@
 ---
 title: vitepress 支持的 emoji
 description: vitepress 支持的 emoji
+tags: []
+categories: []
+created: '2023-3-12 1:48:29'
+updated: '2023-3-12 1:48:29'
 ---
 > https://github.com/markdown-it/markdown-it-emoji/blob/master/lib/data/full.json
 

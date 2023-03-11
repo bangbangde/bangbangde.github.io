@@ -1,4 +1,6 @@
-export const getDateStr = date => {
+const pad = num => (''+num).padStart(2, '0');
+
+export const getDateStr = (date, i = 0) => {
   if (date == null) {
     date = new Date();
   } else {
@@ -8,5 +10,8 @@ export const getDateStr = date => {
     }
   }
 
-  return `${date.getFullYear()}-${String(date.getMonth() + 1)}-${String(date.getDate())} ${date.getHours()}:${String(date.getMinutes())}:${String(date.getSeconds())}`
+  return [
+    `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())}`,
+    `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`,
+  ][i]
 }

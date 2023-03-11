@@ -1,28 +1,37 @@
 <template>
-  <ul class="archive-ul">
-    <li class="archive-li" v-for="(item, index) in data" :key="index">
-      <a class="archive-doc" :href="item.href">
-        <div class="doc-info">
-          <span class="doc-title">{{ item.title }}</span>
-          <span class="dashed-line"></span>
-          <span class="doc-date">{{ item.updatedByGit }}</span>
+  <div class="notes-home">
+    <ul class="archive-ul">
+      <li class="archive-li" v-for="(item, index) in data" :key="index">
+        <a class="archive-doc" :href="item.href">
+          <div class="doc-info">
+            <span class="doc-title">{{ item.title }}</span>
+            <span class="dashed-line"></span>
+            <span class="doc-date">{{ item.updatedByGit }}</span>
+          </div>
+        </a>
+        <div class="doc-tags">
+          <span class="doc-tag" v-for="tag in item.tags" :key="tag">{{ tag }}</span>
         </div>
-      </a>
-    </li>
-  </ul>
+        <div class="doc-desc">{{ item.description }}</div>
+      </li>
+    </ul>
+
+    <div class="aside">
+      <div>
+        <span v-for="(v, k) in tagsAndCategories.tags" :key="tags">{{ k }}({{ v }})</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import { getDateStr } from "../utils/getDateStr.mjs";
+
 const SORT = {
   TITLE: 'TITLE',
   CREATED: 'CREATED',
   UPDATED: 'UPDATED',
   LAST_UPDATED: 'LAST_UPDATED',
-}
-
-const formatDateTime = timeStamp => {
-  const d = new Date(timeStamp);
-  return `${d.getFullYear()}-${String(d.getMonth() + 1)}-${String(d.getDate())} ${d.getHours()}:${String(d.getMinutes())}:${String(d.getSeconds())}`
 }
 
 export default {
@@ -46,9 +55,9 @@ export default {
           tags,
           categories,
           description,
-          created: created && formatDateTime(created),
-          updated: updated && formatDateTime(updated),
-          updatedByGit: lastUpdated && formatDateTime(lastUpdated),
+          created: created && getDateStr(created),
+          updated: updated && getDateStr(updated),
+          updatedByGit: lastUpdated && getDateStr(lastUpdated),
           lastUpdated,
           href: match[1] + '.html'
         }
@@ -60,14 +69,38 @@ export default {
           case SORT.LAST_UPDATED: return a.lastUpdated - b.lastUpdated;
         }
       })
+    },
+    tagsAndCategories() {
+      const data = {
+        tags: {},
+        categories: {}
+      }
+      this.data.forEach((item) => {
+        ['tags', 'categories'].forEach(key => {
+          (item[key] || []).forEach(v => {
+            if (data[key][v]) {
+              data[key][v]++;
+            } else {
+              data[key][v] = 1;
+            }
+          })
+        })
+      });
+      return data;
     }
   }
 }
 </script>
 
 <style>
+.notes-home {
+  max-width: calc(var(--vp-layout-max-width) - 64px);
+  margin: 0 auto;
+  display: flex;
+}
 .archive-ul {
   padding: 0 24px;
+  flex: 1 1 auto;
 }
 @media (min-width: 768px) {
   .archive-ul {
@@ -76,16 +109,36 @@ export default {
 }
 
 .archive-li {
-  margin: 8px 0;
+  margin: 8px 0 18px 0;
 }
 
 .doc-info {
   display: flex;
   align-items: center;
 }
+.doc-title {
+  font-weight: 600;
+}
 .dashed-line {
   flex: 1 1 auto;
   border-top: 1px dashed gainsboro;
   margin: 0 8px;
+}
+.doc-date {
+  font-family: monospace;
+}
+.doc-tags {
+  margin: 8px 0;
+}
+.doc-tag {
+  padding: 2px 8px;
+  border: 1px solid gainsboro;
+  margin: 2px 4px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+.doc-desc {
+  color: #86909c;
+  font-size: 13px;
 }
 </style>
