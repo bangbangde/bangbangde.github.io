@@ -41,7 +41,7 @@ export default {
       { icon: 'github', link: 'https://github.com/bangbangde/bangbangde.github.io' },
     ],
     footer: {
-      message: 'Powered by VitePress.',
+      message: 'Powered by <a href="https://vitepress.dev/" target="_blank">VitePress.</a>',
       copyright: 'Copyright © 2019-present Frank Z'
     }
   }
