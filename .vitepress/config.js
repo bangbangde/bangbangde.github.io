@@ -31,6 +31,7 @@ export default {
         text: 'Notes',
         items: [
           { text: 'Archive', link: '/notes/' },
+          { text: 'Yuque', link: '/yuque/' },
           {
             // text: 'Categories',
             items: [
