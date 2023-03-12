@@ -18,6 +18,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      X-Auth-Token: ${{ secrets.TOKEN_YUQUE }}
     steps:
       - uses: actions/checkout@v3
         with:
