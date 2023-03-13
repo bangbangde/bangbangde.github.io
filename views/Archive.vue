@@ -45,6 +45,7 @@
 
 <script>
 import { getDateStr } from "../utils/getDateStr.mjs";
+import { matchFilePath } from "../utils/matchFilePath.mjs";
 
 const SORT = {
   TITLE: 'TITLE',
@@ -68,11 +69,11 @@ export default {
   computed: {
     data() {
       return this.source.map(({file, data, lastUpdated}) => {
-        const match = /\/docs((?:\/\w+)*(?:\/(\w+)\/index|(?!\/index\.md$)\/(\w+)))\.md$/.exec(file);
+        const { title: titleByMatch, isIndex, url } = matchFilePath(file);
         const { title, tags, categories, description, created, updated } = data;
         return {
           file,
-          title: title || (match[2] && match[2] + '/index') || match[3],
+          title: title || (isIndex ? titleByMatch + '/index' : titleByMatch),
           tags,
           categories,
           description,
@@ -80,7 +81,7 @@ export default {
           updated: updated && getDateStr(updated),
           updatedByGit: lastUpdated && getDateStr(lastUpdated),
           lastUpdated,
-          href: match[1] + '.html'
+          href: url
         }
       })
     },

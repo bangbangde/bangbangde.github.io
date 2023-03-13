@@ -3,7 +3,7 @@
  * match[2] 文件名为 index 时的上级目录名称
  * match[3] 文件名不是 index 时的文件名
  */
-const regExp = /\/docs((?:\/\w+)*(?:\/(\w+)\/index|(?!\/index\.md$)\/(\w+)))\.md$/;
+const regExp = /\/docs((?:\/[+-._\w]+)*(?:\/([+-._\w]+)\/index|(?!\/index\.md$)\/([+-._\w]+)))\.md$/;
 
 /**
  * 匹配文章标题和访问url
