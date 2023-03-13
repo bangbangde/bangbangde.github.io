@@ -11,9 +11,12 @@ const regExp = /\/docs((?:\/\w+)*(?:\/(\w+)\/index|(?!\/index\.md$)\/(\w+)))\.md
  * @returns { title, url }
  */
 export const matchFilePath = path => {
-  const [_, url, dirName, fileName] = regExp.exec(path) || [];
+  const [_, url, dirname, filename] = regExp.exec(path) || [];
   return {
-    title: dirName || fileName,
+    title: dirname || filename,
+    dirname,
+    filename,
+    isIndex: !filename,
     url
   }
 };

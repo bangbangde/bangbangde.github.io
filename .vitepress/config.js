@@ -5,17 +5,18 @@ import { genSideBar } from "../utils/genSidebar.mjs";
 
 const srcDir = 'docs';
 const links = [];
-function genDefSidebar(title, path) {
+function genDefSidebar(path, title, items, { indexText = 'overview', archiveText= '全部笔记' } = {}) {
   return [
     {
       text: title,
       collapsed: false,
       items: [
-        { text: 'overview', link: join(path, 'index') }
+        { text: indexText, link: join(path, 'index') },
+        ...(items || [])
       ]
     },
     {
-      text: '全部笔记',
+      text: archiveText,
       collapsed: true,
       items: genSideBar(resolve(process.cwd(), srcDir), `${path}/**/*.md`)
     }
@@ -69,15 +70,15 @@ export default {
       { text: 'About', link: '/about' },
     ],
     sidebar: {
-      "/cheatsheets/": genDefSidebar('Cheatsheets', 'cheatsheets'),
-      "/notes/html/": genDefSidebar('HTML', 'notes/html'),
-      "/notes/css/": genDefSidebar('CSS', 'notes/css'),
-      "/notes/javascript/": genDefSidebar('JavaScript', 'notes/javascript'),
-      "/notes/typescript/": genDefSidebar('TypeScript', 'notes/typescript'),
-      "/notes/vue/": genDefSidebar('VUE', 'notes/vue'),
-      "/notes/react/": genDefSidebar('React', 'notes/react'),
-      "/notes/others/": genDefSidebar('Others', 'notes/others'),
-      "/notes/vitepress/": genDefSidebar('Vitepress', 'notes/vitepress'),
+      "/cheatsheets/": genDefSidebar('cheatsheets', 'Cheatsheets', null, { archiveText: 'All' }),
+      "/notes/html/": genDefSidebar('notes/html', 'HTML'),
+      "/notes/css/": genDefSidebar('notes/css', 'CSS'),
+      "/notes/javascript/": genDefSidebar('notes/javascript', 'JavaScript'),
+      "/notes/typescript/": genDefSidebar('notes/typescript', 'TypeScript'),
+      "/notes/vue/": genDefSidebar('notes/vue', 'VUE'),
+      "/notes/react/": genDefSidebar('notes/react', 'React'),
+      "/notes/others/": genDefSidebar('notes/others', 'Others'),
+      "/notes/vitepress/": genDefSidebar('notes/vitepress', 'Vitepress'),
     },
     footer: {
       message: 'Powered by <a href="https://vitepress.dev/" target="_blank">VitePress.</a>',

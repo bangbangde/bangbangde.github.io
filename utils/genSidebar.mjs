@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import fg from 'fast-glob';
-import path from "node:path";
+import path, { dirname } from "node:path";
 import parseFrontmatter from 'gray-matter';
 import { matchFilePath } from "./matchFilePath.mjs";
 import { __dirname } from "./path.mjs";
@@ -12,16 +12,15 @@ import { __dirname } from "./path.mjs";
  * @returns 
  */
 export const genSideBar = (srcDir, pattern) => {
-  const cwd = path.join(srcDir, pattern);
   return fg.sync(pattern, {
-    cwd
+    cwd: srcDir
    }).map((file) => {
-    file = path.join(cwd, file);
+    file = path.join(srcDir, file);
     const fileContent = fs.readFileSync(file, 'utf-8');
     const { data: { title, draft } } = parseFrontmatter(fileContent);
-    const { title: titleMatch, url } = matchFilePath(file);
+    const { title: titleMatch, url, isIndex} = matchFilePath(file);
     return {
-      text: title || titleMatch,
+      text: title || (isIndex ? titleMatch + '/index' : titleMatch),
       draft,
       link: url
     }
