@@ -10,17 +10,15 @@ const fetchData = async () => {
       'User-Agent': 'vitepress',
       'Content-Type': 'application/json'
     }
-  }).then(res => res.json())
-    .then(data => {
-      if (data.status === 200) return data;
-      console.log(data);
-      return { data: [] };
-    }).catch(err => {
-      console.error(err);
-      return {
-        data: []
-      }
-    })
+  }).then(res => {
+    if (res.ok) return res.json();
+    return { data: [] };
+  }).catch(err => {
+    console.error(err);
+    return {
+      data: []
+    }
+  })
 }
 
 export default {
