@@ -213,7 +213,7 @@ export default {
   font-size: 14px;
   border-radius: 11px;
   padding: 4px 8px;
-  margin: 8px;
+  margin: 2px;
   line-height: 18px;
   color: #333333;
   cursor: pointer;
