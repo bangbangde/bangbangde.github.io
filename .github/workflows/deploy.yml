@@ -38,9 +38,9 @@ jobs:
           cache: npm
       - run: npm install --frozen-lockfile
       - name: Build
-        run: npm run build
         env:
           X-Auth-Token: ${{ secrets.TOKEN_YUQUE }}
+        run: npm run build
       - uses: actions/configure-pages@v2
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
