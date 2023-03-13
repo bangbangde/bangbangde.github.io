@@ -1,11 +1,29 @@
 import { createWriteStream } from 'node:fs'
-import { resolve } from "node:path";
+import { resolve, join } from "node:path";
 import { SitemapStream } from 'sitemap';
+import { genSideBar } from "../utils/genSidebar.mjs";
 
+const srcDir = 'docs';
 const links = [];
+function genDefSidebar(title, path) {
+  return [
+    {
+      text: title,
+      collapsed: false,
+      items: [
+        { text: 'overview', link: join(path, 'index') }
+      ]
+    },
+    {
+      text: '全部笔记',
+      collapsed: true,
+      items: genSideBar(resolve(process.cwd(), srcDir), `${path}/**/*.md`)
+    }
+  ]
+}
 
 export default {
-  srcDir: 'docs',
+  srcDir,
   title: 'CodeBuff',
   description: 'My Coding Assistant',
   lastUpdated: true,
@@ -51,14 +69,15 @@ export default {
       { text: 'About', link: '/about' },
     ],
     sidebar: {
-      "/html/": [],
-      "/css/": [],
-      "/javascript/": [],
-      "/typescript/": [],
-      "/vitepress/": [],
-      "/vue/": [],
-      "/react/": [],
-      "/others/": []
+      "/cheatsheets/": genDefSidebar('Cheatsheets', 'cheatsheets'),
+      "/notes/html/": genDefSidebar('HTML', 'notes/html'),
+      "/notes/css/": genDefSidebar('CSS', 'notes/css'),
+      "/notes/javascript/": genDefSidebar('JavaScript', 'notes/javascript'),
+      "/notes/typescript/": genDefSidebar('TypeScript', 'notes/typescript'),
+      "/notes/vue/": genDefSidebar('VUE', 'notes/vue'),
+      "/notes/react/": genDefSidebar('React', 'notes/react'),
+      "/notes/others/": genDefSidebar('Others', 'notes/others'),
+      "/notes/vitepress/": genDefSidebar('Vitepress', 'notes/vitepress'),
     },
     footer: {
       message: 'Powered by <a href="https://vitepress.dev/" target="_blank">VitePress.</a>',

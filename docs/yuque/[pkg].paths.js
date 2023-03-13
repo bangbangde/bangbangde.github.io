@@ -3,7 +3,7 @@ import { loadEnv } from 'vitepress';
 const env = loadEnv('', process.cwd(), "");
 
 const fetchData = async () => {
-  console.log('env:token', env.TOKEN_YUQUE);
+  // console.log('env:token', env.TOKEN_YUQUE);
   return fetch('https://www.yuque.com/api/v2/repos/zhaochengqi/puhf6g/toc', {
     headers: {
       'X-Auth-Token': env.TOKEN_YUQUE,

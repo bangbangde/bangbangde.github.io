@@ -3,11 +3,6 @@ import fg from 'fast-glob';
 import parseFrontmatter from 'gray-matter';
 import { getDateStr } from '../utils/getDateStr.mjs';
 
-// import path from "node:path";
-// import { fileURLToPath } from 'node:url';
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-
 fg.sync('docs/notes/**/*.md').forEach((file) => {
   const fileContent = fs.readFileSync(file, 'utf-8');
   const { data, content } = parseFrontmatter(fileContent);

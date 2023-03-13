@@ -6,7 +6,7 @@
 
 <script setup>
 import { computed } from 'vue';
-import TOCItem from '../components/TOCItem.vue';
+import TOCItem from './TOCItem.vue';
 
 const props = defineProps({
   data: Object
