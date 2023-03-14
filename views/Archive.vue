@@ -81,6 +81,7 @@ export default {
   computed: {
     data() {
       return this.source.map(({file, data, lastUpdated}) => {
+        console.log(file);
         const { title: titleByMatch, isIndex, url } = matchFilePath(file);
         const { title, tags, categories, description, created, updated, draft } = data;
         return {
@@ -92,8 +93,8 @@ export default {
           description,
           created: created && getDateStr(created),
           updated: updated && getDateStr(updated),
-          updatedByGit: lastUpdated && getDateStr(lastUpdated),
-          lastUpdated,
+          updatedByGit: getDateStr(lastUpdated || Date.now()),
+          lastUpdated: lastUpdated || Date.now(),
           href: url
         }
       })
@@ -115,9 +116,9 @@ export default {
       }).sort((a, b) => {
         switch (this.sortBy) {
           case SORT.TITLE: break;
-          case SORT.CREATED: return a.created - b.created;
-          case SORT.UPDATED: return a.updated - b.updated;
-          case SORT.LAST_UPDATED: return a.lastUpdated - b.lastUpdated;
+          case SORT.CREATED: return b.created - a.created;
+          case SORT.UPDATED: return b.updated - a.updated;
+          case SORT.LAST_UPDATED: return b.lastUpdated - a.lastUpdated;
         }
       })
     },

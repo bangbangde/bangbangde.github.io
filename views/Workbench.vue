@@ -12,6 +12,9 @@ export default {
       { label: 'Unicode', desc: ''},
       { label: 'UUID', desc: ''},
       { label: '图片压缩', desc: ''},
+      { label: 'hosts', desc: ''},
+      { label: 'MOCK', desc: ''},
+      { label: 'TEST API', desc: ''},
     ]
   })
 }
@@ -47,12 +50,6 @@ export default {
 }
 .content {
   flex: 1 1 auto;
-  height: 100%;
-}
-</style>
-
-<style>
-.VPPage, .VPPage > div, .VPPage > div > div {
   height: 100%;
 }
 </style>

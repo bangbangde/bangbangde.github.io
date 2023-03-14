@@ -49,6 +49,7 @@ export default {
       {
         text: 'Notes',
         items: [
+          { text: 'Q&A', link: '/questions' },
           { text: 'Archive', link: '/notes/' },
           { text: 'Yuque', link: '/yuque/' },
           {
