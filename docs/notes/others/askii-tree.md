@@ -5,7 +5,7 @@ tags: [others]
 categories: [others]
 created: 2023-03-13-19:14:54
 updated: 2023-03-13-19:14:54
-draft: true
+draft: false
 ---
 # 手写目录结构图
 
@@ -52,4 +52,7 @@ draft: true
 
 ::: info
 linux 下可以安装 `tree` 命令生成目录结构图
+
+[在线树形目录小工具](https://devtool.tech/tree)
 :::
+
