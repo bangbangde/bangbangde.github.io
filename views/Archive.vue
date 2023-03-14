@@ -4,7 +4,7 @@
     <div class="layout-flex">
       <div class="content">
         <ul class="archive-ul">
-          <li class="archive-li" v-for="(item, index) in list" :key="index">
+          <li class="archive-li" :class="{draft: item.draft}" v-for="(item, index) in list" :key="index">
             <a class="archive-doc" :href="item.href">
               <div class="doc-info">
                 <span class="doc-title">{{ item.title }}</span>
@@ -19,7 +19,18 @@
           </li>
         </ul>
       </div>
+
       <div class="aside">
+        <div class="aside-title">categories</div>
+        <div class="categories">
+          <span
+            class="category"
+            :class="{active: selectedCategories.includes(k)}" v-for="(v, k) in tagsAndCategories.categories"
+            :key="k"
+            @click="() => handleTagOrCategoryClick('category', k)"
+          >{{ k }}({{ v }})</span>
+        </div>
+
         <div class="aside-title">tags</div>
         <div class="tags">
           <span
@@ -29,14 +40,12 @@
             @click="() => handleTagOrCategoryClick('tag', k)"
           >{{ k }}({{ v }})</span>
         </div>
-        <div class="aside-title">categories</div>
-        <div class="categories">
-          <span
-            class="category"
-            :class="{active: selectedCategories.includes(k)}" v-for="(v, k) in tagsAndCategories.categories"
-            :key="k"
-            @click="() => handleTagOrCategoryClick('category', k)"
-          >{{ k }}({{ v }})</span>
+
+        <div class="search">
+          <input class="input-search" type="text" v-model="search.title" placeholder="输入笔记标题进行搜索">
+        </div>
+        <div class="actions">
+          <button @click="reset" class="a-btn-reset">重置</button>
         </div>
       </div>
     </div>
@@ -61,7 +70,10 @@ export default {
   data: () => ({
     sortBy: SORT.LAST_UPDATED,
     selectedTags: [],
-    selectedCategories: []
+    selectedCategories: [],
+    search: {
+      title: ''
+    }
   }),
   props: {
     source: Array
@@ -70,10 +82,11 @@ export default {
     data() {
       return this.source.map(({file, data, lastUpdated}) => {
         const { title: titleByMatch, isIndex, url } = matchFilePath(file);
-        const { title, tags, categories, description, created, updated } = data;
+        const { title, tags, categories, description, created, updated, draft } = data;
         return {
+          draft,
           file,
-          title: title || (isIndex ? titleByMatch + '/index' : titleByMatch),
+          title: (title || (isIndex ? titleByMatch + '/index' : titleByMatch)) + (draft ? '(draft)' : ''),
           tags,
           categories,
           description,
@@ -98,8 +111,7 @@ export default {
         } else {
           filter[1] = true;
         }
-        console.log(item, filter);
-        return filter[0] === true && filter[1] === true;
+        return (filter[0] === true && filter[1] === true) && (this.search.title ? item.title.includes(this.search.title) : true);
       }).sort((a, b) => {
         switch (this.sortBy) {
           case SORT.TITLE: break;
@@ -137,6 +149,11 @@ export default {
       } else {
         data.push(value)
       }
+    },
+    reset() {
+      this.search.title = '';
+      this.selectedTags = [];
+      this.selectedCategories = [];
     }
   }
 }
@@ -165,6 +182,11 @@ export default {
 
 .archive-li {
   margin: 8px 0 18px 0;
+  color: var(--vp-c-brand);
+}
+
+.archive-li.draft {
+  color: var(--vp-c-brand-darker);
 }
 
 .doc-info {
@@ -220,7 +242,43 @@ export default {
   cursor: pointer;
 }
 .tag.active, .category.active {
-  background-color: coral;
+  background-color: var(--vp-c-brand);
   color: white;
+}
+
+.search {
+  margin: 16px 0;
+}
+.input-search {
+  border: 1px solid var(--vp-input-border-color);
+  background-color: var(--vp-input-bg-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  width: 100%;
+}
+.input-search:hover, .input-search:focus, .input-search:active {
+  border-color: var(--vp-input-hover-border-color);
+}
+
+.actions {
+  margin: 16px 0;
+  text-align: right;
+}
+.a-btn-reset {
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--vp-button-brand-border);
+  background-color: var(--vp-button-brand-bg);
+  color: var(--vp-button-brand-text);
+}
+.a-btn-reset:hover {
+  border-color: var(--vp-button-brand-hover-border);
+  color: var(--vp-button-brand-hover-text);
+  background-color: var(--vp-button-brand-hover-bg);
+}
+.a-btn-reset:active {
+  border-color: var(--vp-button-brand-active-border);
+  color: var(--vp-button-brand-active-text);
+  background-color: var(--vp-button-brand-active-bg);
 }
 </style>

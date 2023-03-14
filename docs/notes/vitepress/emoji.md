@@ -1,8 +1,8 @@
 ---
 title: vitepress 支持的 emoji
 description: vitepress 支持的 emoji
-tags: []
-categories: []
+tags: [emoji]
+categories: [vitepress]
 created: '2023-3-12 1:48:29'
 updated: '2023-3-12 1:48:29'
 ---

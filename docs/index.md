@@ -3,7 +3,7 @@ title: home
 layout: home
 hero:
   name: CodeBuff
-  text: Coding assistant for Front-end Developer
+  text: Coding Fun
   tagline: |
    Workbench🚀, Cheatsheets, Notes.
    Reduce brain burden.

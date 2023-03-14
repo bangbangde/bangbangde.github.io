@@ -2,7 +2,7 @@
 title: 使用 ASKII 字符绘制文件结构图
 descripttion: ""
 tags: [others]
-categories: []
+categories: [others]
 created: 2023-03-13-19:14:54
 updated: 2023-03-13-19:14:54
 draft: true

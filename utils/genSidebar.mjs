@@ -20,9 +20,9 @@ export const genSideBar = (srcDir, pattern) => {
     const { data: { title, draft } } = parseFrontmatter(fileContent);
     const { title: titleMatch, url, isIndex} = matchFilePath(file);
     return {
-      text: title || (isIndex ? titleMatch + '/index' : titleMatch),
+      text: (title || (isIndex ? titleMatch + '/index' : titleMatch)) + (draft ? '(draft)' : ''),
       draft,
       link: url
     }
-  }).filter(({draft}) => !draft);
+  });
 }
