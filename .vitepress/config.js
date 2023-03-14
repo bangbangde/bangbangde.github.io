@@ -37,9 +37,9 @@ export default {
   // lastUpdated: true,
   themeConfig: {
     algolia: {
-      appId: '...',
-      apiKey: '...',
-      indexName: '...'
+      appId: 'Q168L854DW',
+      apiKey: 'f56dfc15de994d9fba815740f380badf',
+      indexName: 'codebuff',
     },
     editLink: {
       pattern: 'https://github.com/bangbangde/bangbangde.github.io/edit/master/docs/:path',
