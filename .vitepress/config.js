@@ -32,6 +32,17 @@ export default {
     [
       'link',
       { rel: 'icon', href: '/favicon.ico' }
+    ],
+    [
+      'script',
+      {},
+      `var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cb0449e83116c1bb248ed22ba367a1b4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();`
     ]
   ],
   // lastUpdated: true,
