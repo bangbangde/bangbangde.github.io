@@ -1,8 +1,8 @@
 ---
 title: "notesothers/regexp"
 descripttion: ""
-tags: []
-categories: []
+tags: [regexp]
+categories: [others]
 created: "2023-03-15 00:02:57"
 updated: "2023-03-15 00:02:57"
 draft: true

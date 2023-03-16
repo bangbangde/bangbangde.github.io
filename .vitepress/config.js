@@ -71,8 +71,7 @@ export default {
               { text: 'JavaScript', link: '/notes/javascript/' },
               { text: 'TypeScript', link: '/notes/typescript/' },
               { text: 'Vue', link: '/notes/vue/' },
-              { text: 'React', link: '/notes/react/' },
-              { text: 'Others', link: '/notes/others/' }
+              { text: 'React', link: '/notes/react/' }
             ]
           }
         ]
@@ -90,7 +89,6 @@ export default {
       "/notes/typescript/": genDefSidebar('notes/typescript', 'TypeScript'),
       "/notes/vue/": genDefSidebar('notes/vue', 'VUE'),
       "/notes/react/": genDefSidebar('notes/react', 'React'),
-      "/notes/others/": genDefSidebar('notes/others', 'Others'),
       "/notes/vitepress/": genDefSidebar('notes/vitepress', 'Vitepress'),
     },
     footer: {
