@@ -129,13 +129,18 @@ export default {
       }
       this.data.forEach((item) => {
         ['tags', 'categories'].forEach(key => {
-          (item[key] || []).forEach(v => {
-            if (data[key][v]) {
-              data[key][v]++;
-            } else {
-              data[key][v] = 1;
-            }
-          })
+          if (item[key]?.length) {
+            (item[key] || []).forEach(v => {
+              if (data[key][v]) {
+                data[key][v]++;
+              } else {
+                data[key][v] = 1;
+              }
+            })
+          } else {
+
+          }
+          
         })
       });
       return data;
@@ -231,7 +236,7 @@ export default {
 
 .tag, .category {
   display: inline-block;
-  max-width: 100px;
+  /* max-width: 100px; */
   word-break: break-all;
   background-color: white;
   font-size: 14px;
