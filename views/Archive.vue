@@ -9,7 +9,7 @@
               <div class="doc-info">
                 <span class="doc-title">{{ item.title }}</span>
                 <span class="dashed-line"></span>
-                <span class="doc-date">{{ item.updatedByGit }}</span>
+                <span class="doc-date">{{ item.updatedStr }}</span>
               </div>
             </a>
             <div class="doc-tags">
@@ -60,7 +60,6 @@ const SORT = {
   TITLE: 'TITLE',
   CREATED: 'CREATED',
   UPDATED: 'UPDATED',
-  LAST_UPDATED: 'LAST_UPDATED',
 }
 
 export default {
@@ -68,7 +67,7 @@ export default {
     return {}
   },
   data: () => ({
-    sortBy: SORT.LAST_UPDATED,
+    sortBy: SORT.UPDATED,
     selectedTags: [],
     selectedCategories: [],
     search: {
@@ -80,7 +79,7 @@ export default {
   },
   computed: {
     data() {
-      return this.source.map(({file, data, lastUpdated}) => {
+      return this.source.map(({file, data, gitTimestamp}) => {
         console.log(file);
         const { title: titleByMatch, isIndex, url } = matchFilePath(file);
         const { title, tags, categories, description, created, updated, draft } = data;
@@ -91,10 +90,11 @@ export default {
           tags,
           categories,
           description,
-          created: created && getDateStr(created),
-          updated: updated && getDateStr(updated),
-          updatedByGit: getDateStr(lastUpdated || Date.now()),
-          lastUpdated: lastUpdated || Date.now(),
+          created,
+          updated,
+          gitTimestamp,
+          createdStr: getDateStr(created || gitTimestamp),
+          updatedStr: getDateStr(updated || gitTimestamp),
           href: url
         }
       })
@@ -116,9 +116,8 @@ export default {
       }).sort((a, b) => {
         switch (this.sortBy) {
           case SORT.TITLE: break;
-          case SORT.CREATED: return b.created - a.created;
-          case SORT.UPDATED: return b.updated - a.updated;
-          case SORT.LAST_UPDATED: return b.lastUpdated - a.lastUpdated;
+          case SORT.CREATED: return (b.created || b.gitTimestamp) - (a.created || a.gitTimestamp);
+          case SORT.UPDATED: return (b.updated || b.gitTimestamp) - (a.updated || a.gitTimestamp);
         }
       })
     },

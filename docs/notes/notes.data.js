@@ -8,12 +8,20 @@ export default {
     return Promise.all(
       watchedFiles.map(async (file) => {
         const content = fs.readFileSync(file, 'utf-8');
-        const lastUpdated = await getGitTimestamp(file);
-        const { data } = parseFrontmatter(content)
+        const gitTimestamp = await getGitTimestamp(file);
+        const { data } = parseFrontmatter(content);
+        data.updated = new Date(data.updated).getTime();
+        data.created = new Date(data.created).getTime();
+        if (Number.isNaN(data.updated)) {
+          data.updated = null;
+        }
+        if (Number.isNaN(data.created)) {
+          data.created = null;
+        }
         return {
           file,
           data,
-          lastUpdated
+          gitTimestamp
         }
       })
     ).then(files => files.filter(({data}) => data.layout === undefined || data.layout === 'docs'));

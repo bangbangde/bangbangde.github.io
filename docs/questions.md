@@ -19,6 +19,14 @@ draft: true
 ::: details Unanswered
 :::
 
+## [browser cache] 改变 query string 可以使静态文件缓存失效吗？
+::: details
+在浏览器中，给静态文件地址增加 query string 可以其缓存失效吗？
+:::
+
+::: details Unanswered
+:::
+
 ## [CSS] 为什么设置高度100%不起作用？
 
 ::: details
