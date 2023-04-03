@@ -5,6 +5,14 @@ import { genSideBar } from "../utils/genSidebar.mjs";
 
 const srcDir = 'docs';
 const links = [];
+const headScript = `var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cb0449e83116c1bb248ed22ba367a1b4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();`
+
 function genDefSidebar(path, title, items, { indexText = 'overview', archiveText= '全部笔记' } = {}) {
   return [
     {
@@ -29,21 +37,8 @@ export default {
   description: 'My Coding Assistant',
   lastUpdated: true,
   head: [
-    [
-      'link',
-      { rel: 'icon', href: '/favicon.ico' }
-    ],
-    [
-      'script',
-      {},
-      `var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?cb0449e83116c1bb248ed22ba367a1b4";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();`
-    ]
+    [ 'link', { rel: 'icon', href: '/favicon.ico' } ],
+    [ 'script', {}, headScript ]
   ],
   // lastUpdated: true,
   themeConfig: {
@@ -62,7 +57,7 @@ export default {
         items: [
           { text: 'Q&A', link: '/questions' },
           { text: 'Archive', link: '/notes/' },
-          { text: 'Yuque', link: '/yuque/' },
+          // { text: 'Yuque', link: '/yuque/' },
           {
             // text: 'Categories',
             items: [
@@ -76,7 +71,7 @@ export default {
           }
         ]
       },
-      { text: 'Workbench', link: '/workbench' },
+      // { text: 'Workbench', link: '/workbench' },
       { text: 'Cheatsheets', link: '/cheatsheets/' },
       { text: 'Playgrounds', link: '/playgrounds' },
       { text: 'About', link: '/about' },
@@ -133,5 +128,9 @@ export default {
     links.forEach((link) => sitemap.write(link))
     sitemap.end()
     await new Promise((r) => writeStream.on('finish', r))
+  },
+  rewrites: {
+    'docs/workbench.md': 'pkg-a/index.md',
+    'packages/pkg-b/src/pkg-b-docs.md': 'pkg-b/index.md'
   }
 }

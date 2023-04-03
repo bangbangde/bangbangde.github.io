@@ -63,11 +63,11 @@ created: "${dateStr}"
 updated: "${dateStr}"
 draft: true
 ---
+# ${name}
 ::: warning
 This is a draft.
 :::
 
-# ${name}
 `
 
   fs.writeFileSync(file, content);

@@ -11,24 +11,28 @@ const fetchData = async () => {
       'Content-Type': 'application/json'
     }
   }).then(res => {
-    if (res.ok) return res.json();
-    return { data: [] };
+    if (res.ok) return {
+      data: res.json(),
+      error: null
+    };
+    return { data: null, error: new Error(res.statusText) };
   }).catch(err => {
-    console.error(err);
     return {
-      data: []
+      data: null,
+      error: err
     }
   })
 }
 
 export default {
   async paths() {
-    const data = await fetchData();
+    const {data, error} = await fetchData();
     return [
       {
         params: {
           pkg: 'index',
-          data
+          data,
+          error: error.message
         }
       }
     ]

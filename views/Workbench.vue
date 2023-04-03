@@ -19,6 +19,7 @@ export default {
   })
 }
 </script>
+
 <template>
   <div class="BDWorkbench">
     <div class="aside">
@@ -31,18 +32,23 @@ export default {
     <div class="content"></div>
   </div>
 </template>
+
 <style scoped>
 .BDWorkbench {
   display: flex;
   min-height: 100%;
 }
 .aside {
-  float: left;
+  position: fixed;
+  left: 24px;
+  top: 50%;
   max-width: var(--vp-sidebar-width);
-  height: 100%;
   background-color: var(--vp-sidebar-bg-color);
-  flex: 0 0 auto;
   padding: 8px;
+  border-radius: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: auto;
 }
 
 .util-item {
