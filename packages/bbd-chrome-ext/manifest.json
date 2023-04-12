@@ -3,6 +3,12 @@
   "description": "build for bangbangde.github.io",
   "version": "1.0",
   "manifest_version": 3,
+  "action": {
+    "default_popup": "popup/index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "js": ["scripts/content.js"],
