@@ -71,7 +71,7 @@ export default {
           }
         ]
       },
-      // { text: 'Workbench', link: '/workbench' },
+      { text: 'Workbench', link: '/workbench' },
       { text: 'Cheatsheets', link: '/cheatsheets/' },
       { text: 'Playgrounds', link: '/playgrounds' },
       { text: 'About', link: '/about' },

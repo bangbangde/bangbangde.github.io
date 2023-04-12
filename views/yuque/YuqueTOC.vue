@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div v-if="toc">
     <TOCItem v-for="(v, k) in toc" :key="k" :params="v" />
   </div>
+  <h1 v-else>Nothing here...</h1>
 </template>
 
 <script setup>
@@ -15,6 +16,7 @@ const props = defineProps({
 const toc = computed(() => {
   const toc = {};
   let stack = [];
+  if (!props.data?.data) return null;
   props.data.data.forEach(item => {
     const { type, title, uuid, level, slug, parent_uuid } = item;
     if (level === 0) {

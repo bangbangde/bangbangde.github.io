@@ -11,10 +11,15 @@ const fetchData = async () => {
       'Content-Type': 'application/json'
     }
   }).then(res => {
-    if (res.ok) return {
-      data: res.json(),
-      error: null
-    };
+    if (res.ok) {
+      console.log('yuque api ok.');
+      return res.json().then(data => {
+        return {
+          data,
+          error: null
+        };
+      });
+    }
     return { data: null, error: new Error(res.statusText) };
   }).catch(err => {
     return {
@@ -32,7 +37,7 @@ export default {
         params: {
           pkg: 'index',
           data,
-          error: error.message
+          error: error?.message
         }
       }
     ]
