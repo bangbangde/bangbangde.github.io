@@ -21,12 +21,12 @@ import fs from "node:fs";
 import { getDateStr } from "../utils/getDateStr.mjs";
 import { __dirname } from "../utils/path.mjs";
 
-
-const dateStr = getDateStr(null, 2);
+const date = new Date();
+const dateStr = getDateStr(date, 2);
 
 const filepaths = process.argv.slice(2);
 if (filepaths.length === 0) {
-  filepaths[0] =  dateStr;
+  filepaths[0] = getDateStr(date, 3);
 }
 
 filepaths.map(v => {

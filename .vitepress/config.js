@@ -52,26 +52,26 @@ export default {
       text: 'Edit this page on GitHub'
     },
     nav: [
-      {
-        text: 'Notes',
-        items: [
-          { text: 'Q&A', link: '/questions' },
-          { text: 'Archive', link: '/notes/' },
-          // { text: 'Yuque', link: '/yuque/' },
-          {
-            // text: 'Categories',
-            items: [
-              { text: 'HTML', link: '/notes/html/' },
-              { text: 'CSS', link: '/notes/css/' },
-              { text: 'JavaScript', link: '/notes/javascript/' },
-              { text: 'TypeScript', link: '/notes/typescript/' },
-              { text: 'Vue', link: '/notes/vue/' },
-              { text: 'React', link: '/notes/react/' }
-            ]
-          }
-        ]
-      },
-      { text: 'Workbench', link: '/workbench' },
+      // {
+      //   text: 'Notes',
+      //   items: [
+      //     // { text: 'Yuque', link: '/yuque/' },
+      //     // {
+      //     //   text: 'Categories',
+      //     //   items: [
+      //     //     { text: 'HTML', link: '/notes/html/' },
+      //     //     { text: 'CSS', link: '/notes/css/' },
+      //     //     { text: 'JavaScript', link: '/notes/javascript/' },
+      //     //     { text: 'TypeScript', link: '/notes/typescript/' },
+      //     //     { text: 'Vue', link: '/notes/vue/' },
+      //     //     { text: 'React', link: '/notes/react/' }
+      //     //   ]
+      //     // }
+      //   ]
+      // },
+      // { text: 'Workbench', link: '/workbench' },
+      { text: 'Notes', link: '/notes/' },
+      { text: 'Q&A', link: '/questions' },
       { text: 'Cheatsheets', link: '/cheatsheets/' },
       { text: 'Playgrounds', link: '/playgrounds' },
       { text: 'About', link: '/about' },

@@ -3,21 +3,17 @@ title: home
 layout: home
 hero:
   name: CodeBuff
-  text: Coding Fun
+  text: 🥱
   tagline: |
-   Workbench🚀, Cheatsheets, Notes.
-   Reduce brain burden.
+    Hi 打工人
   image:
     src: /brain.png
     alt: CodeBuff
   actions:
     - theme: brand
-      text: Workbench
+      text: 开始打工
       link: /workbench
-    - theme: alt
-      text: Notes
-      link: /notes/
-    - theme: alt
-      text: Install
-      link: /install
+    # - theme: alt
+    #   text: notes
+    #   link: /notes/
 ---

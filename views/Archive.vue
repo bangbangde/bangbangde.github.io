@@ -80,8 +80,9 @@ export default {
   computed: {
     data() {
       return this.source.map(({file, data, gitTimestamp}) => {
-        console.log(file);
-        const { title: titleByMatch, isIndex, url } = matchFilePath(file);
+        const fileEncoded = encodeURI(file);
+        console.log(fileEncoded);
+        const { title: titleByMatch, isIndex, url } = matchFilePath(fileEncoded);
         const { title, tags, categories, description, created, updated, draft } = data;
         return {
           draft,

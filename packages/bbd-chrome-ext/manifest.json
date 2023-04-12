@@ -1,0 +1,14 @@
+{
+  "name": "Bangbangde",
+  "description": "build for bangbangde.github.io",
+  "version": "1.0",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js"],
+      "matches": [
+        "*://*.codebuff.tech/*"
+      ]
+    }
+  ]
+}
