@@ -3,12 +3,6 @@
   "description": "build for bangbangde.github.io",
   "version": "1.0",
   "manifest_version": 3,
-  "permissions": [
-    "tabs",
-    "activeTab",
-    "scripting",
-    "declarativeContent"
-  ],
   "icons": {
     "16": "icons/16.png",
     "32": "icons/32.png",
@@ -23,7 +17,30 @@
       "48": "icons/48.png"
     }
   },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting",
+    "declarativeContent"
+  ],
+  "host_permissions": [
+    "*://*.codebuff.tech/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["resources/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "background": {
-    "service_worker": "service-worker.js"
-  }
+    "service_worker": "scripts/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "js": ["scripts/content-script.js"],
+      "matches": [
+        "*://*.codebuff.tech/*"
+      ]
+    }
+  ]
 }
