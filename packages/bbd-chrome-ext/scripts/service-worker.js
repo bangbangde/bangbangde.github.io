@@ -24,7 +24,8 @@ chrome.runtime.onInstalled.addListener(async () => {
  
   // 给 codebuff tab 页 绑定 popup
   chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (tab.url.includes('codebuff.tech')) {
+    console.log('tabs.onUpdated', changeInfo)
+    if (tab.url.startsWith('https://codebuff.tech')) {
       console.log('setPopup')
       chrome.action.setPopup({
         popup: "popup/index.html",
@@ -33,3 +34,12 @@ chrome.runtime.onInstalled.addListener(async () => {
     }
   });
 });
+
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    console.log(request);
+  }
+);
