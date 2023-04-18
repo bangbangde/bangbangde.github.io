@@ -1,15 +1,15 @@
 <template>
   <div>
-    <a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=bcf9b31b393990fe5bb9">Click here</a>
+    <button @click="() => openOauthWindow()">Connect to Github</button>
   </div>
 </template>
 
 <script>
 export default {
-  setup () {
-    
-
-    return {}
+  methods: {
+    openOauthWindow() {
+      window.open('https://github.com/login/oauth/authorize?scope=user:email&client_id=bcf9b31b393990fe5bb9', 'newWindow', 'width=500,height=500');
+    }
   }
 }
 </script>

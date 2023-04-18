@@ -9,9 +9,11 @@ const _postMessage = payload => {
 }
 
 const ext = {
-  oauthBygithub() {
+  handleGithubOauth(objStr) {
+    console.log('handleGithubOauth', objStr);
     _postMessage({
-      message: 'oauthBygithub'
+      message: 'handleGithubOauth',
+      data: JSON.parse(objStr)
     })
   }
 }
@@ -28,10 +30,14 @@ window.addEventListener('message', ev => {
 
   const payload = ev.data.payload;
 
-  console.log('hooks message:', payload);
+  console.log('content script message:', payload);
+
+  if (hooks[payload.message]) {
+    hooks[payload.message](payload.data);
+  }
 });
 
-window['CHROME_EXT'] = {
+window['CB_EXT'] = {
   ...ext
 }
 
