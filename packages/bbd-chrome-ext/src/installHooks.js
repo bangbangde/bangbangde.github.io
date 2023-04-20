@@ -1,4 +1,4 @@
-import Connect, { actions } from "../../scripts/lib/connect";
+import Connect, { actions } from "./lib/connect";
 
 const conn = new Connect({
   id: 'injected script',
@@ -21,7 +21,7 @@ if (location.href.startsWith('https://next.codebuff.tech/api/oauth')) {
   });
 
   conn.request('hello').then(res => {
-    crossOriginIsolated.log('codebuff hooks installed', res);
+    console.log('codebuff hooks installed', res);
   }).catch(err => {
     console.error('超时未响应');
   })

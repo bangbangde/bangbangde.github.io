@@ -2,23 +2,50 @@
  * 适用于 content script 与 注入 js 间通信
  */
 
-import CONST from "./constant";
+import * as CONST from "./constant";
+
+function messageListener(ev) {
+  const {type, from, payload, responseTo} = ev.data || {};
+
+  if (
+    ev.source !== window ||
+    type !== this.messageType ||
+    from === this.id
+  ) return;
+
+  // 处理 request 响应
+  if (responseTo) {
+    const handler = this.handlersWaitingResp.get(responseTo);
+    if (handler) {
+      this.handlersWaitingResp.delete(responseTo);
+      handler(payload);
+    }
+    return;
+  }
+
+  // 其他消息分发给 handlers
+  this.handlers.forEach(fn => {
+    fn(ev.data);
+  })
+}
 
 export default class Connect {
 
-  id = 'unknown';
+  id = Math.random().toString(32).substring(2);
   timeout = 1500;
-  messageType = CONST.messageType;
+  messageType = CONST.MESSAGE_TYPE;
   handlers = new Set();
   handlersWaitingResp = new Map();
 
-  constructor(params = {}) {
-    this.id = params.id || 'unknown';
-    this.timeout = params.timeout || 1500;
+  constructor(params = {}) { 
+    if (params.id) this.id = params.id;
+    if (params.timeout) this.timeout = params.timeout;
+
+    this._messageListener = messageListener.bind(this);
     window.addEventListener('message', this._messageListener);
   }
 
-  send(payload, cb, timeout = this.timeout) {
+  send(payload, cb, { responseTo, timeout = this.timeout}) {
     let timeId = null;
     const requestId = Math.random();
     const expectResponse = !!cb;
@@ -28,6 +55,7 @@ export default class Connect {
         type : this.messageType,
         expectResponse,
         requestId,
+        responseTo,
         from: this.id,
         payload
       },
@@ -35,7 +63,7 @@ export default class Connect {
     );
 
     if (cb) {
-      handlersWaitingResponse.set(requestId, res => {
+      this.handlersWaitingResp.set(requestId, res => {
         clearTimeout(timeId);
         cb(null, res);
       });
@@ -64,30 +92,6 @@ export default class Connect {
 
   removeHandler() {
     this.handlers.delete(fn);
-  }
-
-  _messageListener(ev) {
-    const {type, payload, responseTo} = ev.data || {};
-
-    if (
-      ev.source !== window ||
-      type !== this.messageType 
-    ) return;
-
-    // 处理 request 响应
-    if (responseTo) {
-      const handler = this.handlersWaitingResp.get(responseTo);
-      if (handler) {
-        this.handlersWaitingResp.delete(responseTo);
-        handler(payload);
-      }
-      return;
-    }
-
-    // 其他消息分发给 handlers
-    this.handlers.forEach(fn => {
-      fn(ev.data);
-    })
   }
 
   destroy() {
