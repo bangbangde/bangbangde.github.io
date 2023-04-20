@@ -24,13 +24,14 @@ chrome.runtime.onInstalled.addListener(async () => {
  
   // 给 codebuff tab 页 绑定 popup
   chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    console.log('tabs.onUpdated', changeInfo);
-    if (tab.url.startsWith('https://codebuff.tech')) {
-      console.log('setPopup');
-      chrome.action.setPopup({
-        popup: "popup/index.html",
-        tabId
-      });
+    if (changeInfo?.status === 'loading') {
+      if (tab.url.includes('codebuff.tech')) {
+        console.log('setPopup');
+        chrome.action.setPopup({
+          popup: "popup/index.html",
+          tabId
+        });
+      }
     }
   });
 });

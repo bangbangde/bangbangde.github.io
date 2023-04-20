@@ -21,7 +21,8 @@
     "tabs",
     "activeTab",
     "scripting",
-    "declarativeContent"
+    "declarativeContent",
+    "cookies"
   ],
   "host_permissions": [
     "*://*.codebuff.tech/*"
