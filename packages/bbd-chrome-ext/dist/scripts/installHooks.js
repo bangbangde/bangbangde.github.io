@@ -48,7 +48,7 @@
       window.addEventListener('message', this._messageListener);
     }
 
-    send(payload, cb, { responseTo, timeout = this.timeout}) {
+    send(payload, cb, { responseTo, timeout = this.timeout} = {}) {
       let timeId = null;
       const requestId = Math.random();
       const expectResponse = !!cb;
