@@ -8,12 +8,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { baseUrl, fetchUserInfo } from "../../api";
 
+interface data {
+  userInfo: {
+    avatarUrl: string
+    loading: boolean
+  } | null
+  loading: boolean
+}
 
 export default {
-  data: () => ({
+  data: (): data => ({
     userInfo: null,
     loading: false
   }),

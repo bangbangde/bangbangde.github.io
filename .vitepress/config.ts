@@ -3,9 +3,10 @@ import { resolve, join } from "node:path";
 import { SitemapStream } from 'sitemap';
 import { genSideBar } from "../utils/genSidebar.mjs";
 import { fileURLToPath } from "node:url";
+import { defineConfig, DefaultTheme } from 'vitepress'
 
 const srcDir = 'docs';
-const links = [];
+const links: {}[] = [];
 const headScript = `var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
@@ -14,7 +15,7 @@ const headScript = `var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();`
 
-function genDefSidebar(path, title, items, { indexText = 'overview', archiveText= '全部笔记' } = {}) {
+function genDefSidebar(path: string, title: string, items?:DefaultTheme.NavItem[] | null, { indexText = 'overview', archiveText= '全部笔记' } = {}) {
   return [
     {
       text: title,
@@ -32,7 +33,7 @@ function genDefSidebar(path, title, items, { indexText = 'overview', archiveText
   ]
 }
 
-export default {
+export default defineConfig({
   srcDir,
   title: 'CodeBuff',
   description: 'My Coding Assistant',
@@ -130,10 +131,10 @@ export default {
     sitemap.end()
     await new Promise((r) => writeStream.on('finish', r))
   },
-  rewrites: {
-    'docs/workbench.md': 'pkg-a/index.md',
-    'packages/pkg-b/src/pkg-b-docs.md': 'pkg-b/index.md'
-  },
+  // rewrites: {
+  //   'docs/workbench.md': 'pkg-a/index.md',
+  //   'packages/pkg-b/src/pkg-b-docs.md': 'pkg-b/index.md'
+  // },
   // vite: {
   //   resolve: {
   //     alias: [
@@ -146,4 +147,4 @@ export default {
   //     ]
   //   }
   // }
-}
+});

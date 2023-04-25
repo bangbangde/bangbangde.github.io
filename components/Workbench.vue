@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 export default {
   setup() {},
   name: 'bbd-workbench',

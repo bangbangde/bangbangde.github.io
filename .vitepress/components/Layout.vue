@@ -1,5 +1,5 @@
 <!--.vitepress/theme/MyLayout.vue-->
-<script setup>
+<script lang="ts" setup>
 import DefaultTheme from 'vitepress/theme';
 import NavBarAvatar from './NavBarAvatar.vue';
 

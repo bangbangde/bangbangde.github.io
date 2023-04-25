@@ -8,8 +8,8 @@ updated: '2023-3-12 1:48:29'
 layout: page
 ---
 <script setup>
-  import { data } from "./index.data.js";
-  import Archive from "../../views/Archive.vue";
+  import { data } from "./data/notes-archive.data.js";
+  import Archive from "../components/Archive.vue";
 </script>
 
 <Archive :source="data" />
