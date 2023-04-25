@@ -9,10 +9,5 @@ layout: doc
 ---
 <!-- <script setup>
   import { data } from "./index.data.js";
-  import Archive from "../../views/Archive.vue";
 </script>
-
-<Archive :source="data" /> -->
-
-# Notebook
 
