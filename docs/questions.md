@@ -18,6 +18,14 @@ draft: true
 ::: details Unanswered
 :::
 -->
+## [web] http请求可以携带哪些cookie
+::: details
+搞清楚 domain、path、secure、samesite、priority 等 cookie 属性，是如何影响 http 请求是否携带该 cookie 的。
+:::
+
+::: details Unanswered
+:::
+
 ## [general] Extensions 101 是什么意思
 ::: details
 chrome extension docs 有一个章节叫做 "[Extensions 101](https://developer.chrome.com/docs/extensions/mv3/getstarted/extensions-101/)"，这个标题是什么意思？

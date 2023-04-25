@@ -2,6 +2,7 @@ import { createWriteStream } from 'node:fs'
 import { resolve, join } from "node:path";
 import { SitemapStream } from 'sitemap';
 import { genSideBar } from "../utils/genSidebar.mjs";
+import { fileURLToPath } from "node:url";
 
 const srcDir = 'docs';
 const links = [];
@@ -74,7 +75,6 @@ export default {
       { text: 'Q&A', link: '/questions' },
       { text: 'Cheatsheets', link: '/cheatsheets/' },
       { text: 'Playgrounds', link: '/playgrounds' },
-      { text: 'About', link: '/about' },
     ],
     sidebar: {
       "/cheatsheets/": genDefSidebar('cheatsheets', 'Cheatsheets', null, { archiveText: 'All' }),
@@ -84,7 +84,7 @@ export default {
       "/notes/typescript/": genDefSidebar('notes/typescript', 'TypeScript'),
       "/notes/vue/": genDefSidebar('notes/vue', 'VUE'),
       "/notes/react/": genDefSidebar('notes/react', 'React'),
-      "/notes/vitepress/": genDefSidebar('notes/vitepress', 'Vitepress'),
+      "/notes/vitepress/": genDefSidebar('notes/vitepress', 'Vitepress')
     },
     footer: {
       message: 'Powered by <a href="https://vitepress.dev/" target="_blank">VitePress.</a>',
@@ -98,6 +98,7 @@ export default {
     const { pageData } = context;
 
     if (!/[\\/]404\.html$/.test(id)) {
+      // 收集页面信息，在 buildEnd 中写入 sitemap
       links.push({
         url: pageData.relativePath.replace(/\.md$/, '.html'), // pageData.relativePath.replace(/((^|\/)index)?\.md$/, '$2'),
         lastmod: pageData.lastUpdated
@@ -132,5 +133,17 @@ export default {
   rewrites: {
     'docs/workbench.md': 'pkg-a/index.md',
     'packages/pkg-b/src/pkg-b-docs.md': 'pkg-b/index.md'
-  }
+  },
+  // vite: {
+  //   resolve: {
+  //     alias: [
+  //       {
+  //         find: /^.*\/VPNavBar\.vue$/,
+  //         replacement: fileURLToPath(
+  //           new URL('./components/NavBar.vue', import.meta.url)
+  //         )
+  //       }
+  //     ]
+  //   }
+  // }
 }

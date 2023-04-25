@@ -5,14 +5,12 @@ tags: []
 categories: [archive]
 created: '2023-3-12 1:48:29'
 updated: '2023-3-12 1:48:29'
-layout: doc
+layout: page
 ---
-<!-- <script setup>
+<script setup>
   import { data } from "./index.data.js";
   import Archive from "../../views/Archive.vue";
 </script>
 
-<Archive :source="data" /> -->
-
-# Notebook
+<Archive :source="data" />
 

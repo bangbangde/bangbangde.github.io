@@ -1,15 +1,15 @@
 <template>
-  <div class="notes-home">
-    <h2 class="title">笔记·最近编辑</h2>
-    <div class="layout-flex">
+  <div class="notes-archive">
+    <h2 class="title">All Notes ({{source.length}})</h2>
+    <div class="layout">
       <div class="content">
         <ul class="archive-ul">
           <li class="archive-li" :class="{draft: item.draft}" v-for="(item, index) in list" :key="index">
             <a class="archive-doc" :href="item.href">
               <div class="doc-info">
-                <span class="doc-title">{{ item.title }}</span>
+                <span class="doc-title"><span>{{ index + 1 }}.</span> {{ item.title }}</span>
                 <span class="dashed-line"></span>
-                <span class="doc-date">{{ item.updatedStr }}</span>
+                <span class="doc-date">{{ item.datetimes.git[1] }}</span>
               </div>
             </a>
             <div class="doc-tags">
@@ -21,7 +21,7 @@
       </div>
 
       <div class="aside">
-        <div class="aside-title">categories</div>
+        <div class="aside-title">Categories</div>
         <div class="categories">
           <span
             class="category"
@@ -31,7 +31,7 @@
           >{{ k }}({{ v }})</span>
         </div>
 
-        <div class="aside-title">tags</div>
+        <div class="aside-title">Tags</div>
         <div class="tags">
           <span
             class="tag"
@@ -57,9 +57,10 @@ import { getDateStr } from "../utils/getDateStr.mjs";
 import { matchFilePath } from "../utils/matchFilePath.mjs";
 
 const SORT = {
-  TITLE: 'TITLE',
-  CREATED: 'CREATED',
-  UPDATED: 'UPDATED',
+  TITLE: 'TITLE',     // 标题
+  CREATED: 'CREATED', // 创建时间
+  UPDATED: 'UPDATED', // 更新时间
+  GIT: 'GIT'     // 最新 git 提交时间
 }
 
 export default {
@@ -67,7 +68,7 @@ export default {
     return {}
   },
   data: () => ({
-    sortBy: SORT.UPDATED,
+    sortBy: SORT.GIT,
     selectedTags: [],
     selectedCategories: [],
     search: {
@@ -79,24 +80,24 @@ export default {
   },
   computed: {
     data() {
-      return this.source.map(({file, data, gitTimestamp}) => {
-        const fileEncoded = encodeURI(file);
-        console.log(fileEncoded);
-        const { title: titleByMatch, isIndex, url } = matchFilePath(fileEncoded);
-        const { title, tags, categories, description, created, updated, draft } = data;
+      return this.source.map(({value}) => {
+        const { frontmatter, excerpt, gitTimestamp, filePath } = value;
+        const { title: titleByMatch, isIndex, url } = matchFilePath(encodeURI(filePath));
+        const { title, tags, categories, description, created, updated, draft } = frontmatter;
+
         return {
           draft,
-          file,
           title: (title || (isIndex ? titleByMatch + '/index' : titleByMatch)) + (draft ? '(draft)' : ''),
           tags,
           categories,
           description,
-          created,
-          updated,
-          gitTimestamp,
-          createdStr: getDateStr(created || gitTimestamp),
-          updatedStr: getDateStr(updated || gitTimestamp),
-          href: url
+          datetimes: {
+            created: [new Date(created).getTime(), created],
+            updated: [new Date(updated).getTime(), updated],
+            git: [gitTimestamp, getDateStr(gitTimestamp)]
+          },
+          href: url,
+          excerpt
         }
       })
     },
@@ -113,13 +114,17 @@ export default {
         } else {
           filter[1] = true;
         }
-        return (filter[0] === true && filter[1] === true) && (this.search.title ? item.title.includes(this.search.title) : true);
+        return (filter[0] === true && filter[1] === true) && (this.search.title ? item.title.toLocaleLowerCase().includes(this.search.title.toLocaleLowerCase()) : true);
       }).sort((a, b) => {
         switch (this.sortBy) {
           case SORT.TITLE: break;
-          case SORT.CREATED: return (b.created || b.gitTimestamp) - (a.created || a.gitTimestamp);
-          case SORT.UPDATED: return (b.updated || b.gitTimestamp) - (a.updated || a.gitTimestamp);
+          case SORT.CREATED: return b.datetimes.created[0] - a.datetimes.created[0];
+          case SORT.UPDATED: return b.datetimes.updated[0] - a.datetimes.updated[0];
+          case SORT.GIT: return b.datetimes.git[0] - a.datetimes.git[0];
         }
+      }).sort((a, b) => {
+        const num = v => v ? 0 : 1;
+        return num(a.draft) -  num(b.draft);
       })
     },
     tagsAndCategories() {
@@ -166,7 +171,8 @@ export default {
 </script>
 
 <style>
-.notes-home {
+.notes-archive {
+  --aside-with: 300px;
   max-width: calc(var(--vp-layout-max-width) - 64px);
   margin: 0 auto;
   padding: 0 24px;
@@ -174,18 +180,14 @@ export default {
     padding: 0 32px;
   }
 }
-.layout-flex {
-  display: flex;
+.layout {
+  padding-right: var(--aside-with);
 }
-.notes-home .title {
+.notes-archive .title {
   font-size: 18px;
   font-weight: 700;
   margin: 18px 0;
 }
-.content {
-  flex: 1 1 auto;
-}
-
 .archive-li {
   margin: 8px 0 18px 0;
   color: var(--vp-c-brand);
@@ -224,10 +226,17 @@ export default {
   color: #86909c;
   font-size: 13px;
 }
+
 .aside {
-  margin-left: 24px;
-  width: 360px;
-  flex: 0 0 auto;
+  position: fixed;
+  width: var(--aside-with);
+  top: var(--vp-nav-height);
+  margin-top: 18px;
+  right: 32px;
+}
+
+.aside-title {
+  font-weight: 700;
 }
 
 .tags, .categories {

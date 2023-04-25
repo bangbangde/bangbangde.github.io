@@ -1,6 +1,6 @@
 ---
 title: home
-layout: home
+layout: page
 hero:
   name: CodeBuff
   text: 🥱
@@ -17,9 +17,3 @@ hero:
     #   text: notes
     #   link: /notes/
 ---
-
-<!-- <script setup>
-  import GithubOauth from "../views/GithubOauth.vue"
-</script>
-
-<GithubOauth /> -->
