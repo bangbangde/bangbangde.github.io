@@ -1,7 +1,6 @@
 import { createContentLoader } from 'vitepress';
 import { getGitTimestamp } from "../../utils/getGitTimestamp.mjs";
 import path from "node:path";
-import { fileURLToPath } from 'node:url';
 
 export default createContentLoader('docs/notes/**/*.md', {
   includeSrc: false, // include raw markdown source?
