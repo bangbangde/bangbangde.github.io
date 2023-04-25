@@ -5,6 +5,7 @@
     "dev": "vitepress dev --open --host local.codebuff.tech",
     "build": "vitepress build",
     "preview": "vitepress preview",
+    "lint": "eslint .",
     "new": "node scripts/createNote.mjs"
   },
   "repository": {
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/bangbangde/bangbangde.github.io#readme",
   "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.39.0",
     "eslint-config-prettier": "^8.8.0",
@@ -33,5 +35,8 @@
     "packages/bbd-chrome-ext",
     "packages/bbd-localhost",
     "packages/original-ui"
-  ]
+  ],
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
 }

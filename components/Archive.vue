@@ -4,7 +4,7 @@
     <div class="layout">
       <div class="content">
         <ul class="archive-ul">
-          <li class="archive-li" :class="{draft: item.draft}" v-for="(item, index) in list" :key="index">
+          <li v-for="(item, index) in list" :key="index" class="archive-li" :class="{draft: item.draft}">
             <a class="archive-doc" :href="item.href">
               <div class="doc-info">
                 <span class="doc-title"><span>{{ index + 1 }}.</span> {{ item.title }}</span>
@@ -13,7 +13,7 @@
               </div>
             </a>
             <div class="doc-tags">
-              <span class="doc-tag" v-for="tag in item.tags" :key="tag">{{ tag }}</span>
+              <span v-for="tag in item.tags" :key="tag" class="doc-tag">{{ tag }}</span>
             </div>
             <div class="doc-desc">{{ item.description }}</div>
           </li>
@@ -24,9 +24,9 @@
         <div class="aside-title">Categories</div>
         <div class="categories">
           <span
-            class="category"
-            :class="{active: selectedCategories.includes(k)}" v-for="(v, k) in tagsAndCategories.categories"
-            :key="k"
+            v-for="(v, k) in tagsAndCategories.categories"
+            :key="k" class="category"
+            :class="{active: selectedCategories.includes(k)}"
             @click="() => handleTagOrCategoryClick('category', k)"
           >{{ k }}({{ v }})</span>
         </div>
@@ -34,18 +34,18 @@
         <div class="aside-title">Tags</div>
         <div class="tags">
           <span
-            class="tag"
-            :class="{active: selectedTags.includes(k)}" v-for="(v, k) in tagsAndCategories.tags"
-            :key="k"
+            v-for="(v, k) in tagsAndCategories.tags"
+            :key="k" class="tag"
+            :class="{active: selectedTags.includes(k)}"
             @click="() => handleTagOrCategoryClick('tag', k)"
           >{{ k }}({{ v }})</span>
         </div>
 
         <div class="search">
-          <input class="input-search" type="text" v-model="search.title" placeholder="输入笔记标题进行搜索">
+          <input v-model="search.title" class="input-search" type="text" placeholder="输入笔记标题进行搜索">
         </div>
         <div class="actions">
-          <button @click="reset" class="a-btn-reset">重置</button>
+          <button class="a-btn-reset" @click="reset">重置</button>
         </div>
       </div>
     </div>
@@ -64,6 +64,9 @@ const SORT = {
 }
 
 export default {
+  props: {
+    source: Array
+  },
   setup () {
     return {}
   },
@@ -75,9 +78,6 @@ export default {
       title: ''
     }
   }),
-  props: {
-    source: Array
-  },
   computed: {
     data() {
       return this.source.map(({value}) => {
@@ -175,14 +175,18 @@ export default {
   --aside-with: 300px;
   max-width: calc(var(--vp-layout-max-width) - 64px);
   margin: 0 auto;
-  padding: 0 24px;
-  @media (min-width: 768px) {
+  @media (max-width: 1440px) {
     padding: 0 32px;
   }
 }
 .layout {
-  padding-right: var(--aside-with);
+  display: flex;
 }
+
+.content {
+  flex: 1 1 auto;
+}
+
 .notes-archive .title {
   font-size: 18px;
   font-weight: 700;
@@ -228,11 +232,14 @@ export default {
 }
 
 .aside {
-  position: fixed;
   width: var(--aside-with);
-  top: var(--vp-nav-height);
-  margin-top: 18px;
-  right: 32px;
+  margin-left: 63px;
+  position: sticky;
+  top: calc(var(--vp-nav-height) + 60px);
+  align-self: flex-start;
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .aside-title {

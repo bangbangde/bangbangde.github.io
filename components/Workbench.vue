@@ -1,7 +1,7 @@
 <script lang="ts">
 export default {
+  name: 'BbdWorkbench',
   setup() {},
-  name: 'bbd-workbench',
   data: () => ({
     utils: [
       { label: '格式化', desc: '支持json,yaml' },
@@ -24,9 +24,9 @@ export default {
   <div class="BDWorkbench">
     <div class="aside">
       <div
-        class="util-item"
         v-for="item in utils"
         :key="item.label"
+        class="util-item"
       >{{ item.label }}</div>
     </div>
     <div class="content"></div>
